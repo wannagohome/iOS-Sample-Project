@@ -16,7 +16,14 @@ public protocol SearchViewControllerDelegate: AnyObject {
     func tapTitle()
 }
 
-public final class SearchViewController: UIViewController, View {
+public protocol SearhViewControllerType: UIViewController {
+    var delegate: SearchViewControllerDelegate? { get set }
+}
+
+final class SearchViewController:
+    UIViewController,
+    View,
+    SearhViewControllerType {
     
     // MARK: - Properties
     public var disposeBag: DisposeBag = DisposeBag()
@@ -37,13 +44,13 @@ public final class SearchViewController: UIViewController, View {
     }
     
     // MARK: - Life Cycle
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         attribute()
         layout()
     }
     
-    public func bind(reactor: SearchReactor) {
+    func bind(reactor: SearchReactor) {
         searchBar.rx.text.orEmpty
             .distinctUntilChanged()
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)

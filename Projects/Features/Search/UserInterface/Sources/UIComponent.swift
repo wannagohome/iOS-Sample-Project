@@ -17,11 +17,11 @@ public protocol UIDependency: Dependency {
 }
 
 public protocol UIBuilder {
-    var searchViewController: SearchViewController { get }
+    var searchViewController: SearhViewControllerType { get }
 }
 
 public final class UIComponent: Component<UIDependency>, UIBuilder {
-    public var searchViewController: SearchViewController {
+    public var searchViewController: SearhViewControllerType {
         SearchViewController(reactor: SearchReactor(repository: dependency.dataComponent.repository))
     }
 }

@@ -22,6 +22,7 @@ public protocol SearchBuilder {
 }
 
 public final class SearchComponent: Component<SearchDependency>, SearchBuilder {
+    
     public var uiComponent: UIBuilder {
         UIComponent(parent: self)
     }

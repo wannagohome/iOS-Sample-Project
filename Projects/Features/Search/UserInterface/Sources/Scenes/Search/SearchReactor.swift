@@ -12,7 +12,7 @@ import ReactorKit
 import SearchDataRepository
 import SearchDomain
 
-public final class SearchReactor: Reactor {
+final class SearchReactor: Reactor {
     
     private var repository: SearchRepositoryType
     public var initialState: State
