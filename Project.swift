@@ -11,7 +11,9 @@ let project = Project.app(
     scripts: [.pre(script: """
                    export PATH="$PATH:/opt/homebrew/bin"
                    
-                   needle generate Projects/Application/Sources/Generated/NeedleGenerated.swift Projects/
+                   needle generate \
+                   Projects/Application/Sources/Generated/NeedleGenerated.swift Projects/ \
+                   --exclude-paths Projects/Features/Search/DemoAppSources
                    """, name: "Needle generate")],
     dependencies: [
         Dep.Project.Module.Core,
