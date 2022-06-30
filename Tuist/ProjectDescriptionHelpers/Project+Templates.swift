@@ -93,7 +93,7 @@ public extension Project {
                         hasResources: Bool = true,
                         hasDemoApp: Bool = false) -> Project {
         
-        let organizationName = "org.AriseNShine"
+        let organizationName = "org.wannagohome"
         let isDynamic = product == .dynamicLibrary || product == .framework
         let settings: SettingsDictionary = isDynamic
         ? ["OTHER_LDFLAGS" : "$(inherited) -all_load"]
