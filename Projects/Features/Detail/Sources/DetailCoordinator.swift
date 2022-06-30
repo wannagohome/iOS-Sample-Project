@@ -29,6 +29,6 @@ public final class DetailCoordinator: Coordinator {
     }
     
     public func start() {
-        navigationController.pushViewController(DetailViewController(), animated: true)
+        navigationController.pushViewController(component.viewController, animated: true)
     }
 }

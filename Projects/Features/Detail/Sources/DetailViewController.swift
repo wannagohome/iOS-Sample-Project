@@ -11,16 +11,20 @@ import SnapKit
 import ReactorKit
 import RxCocoa
 
+public protocol DetailViewControllerType: UIViewController {}
+
 final class DetailViewController:
     UIViewController,
-    View {
+    View,
+    DetailViewControllerType {
     
     var disposeBag: DisposeBag = DisposeBag()
     private let wordLabel = UILabel()
     private let tableView = UITableView(frame: .zero, style: .grouped)
     
-    init() {
+    init(_ reactor: DetailReactor) {
         super.init(nibName: nil, bundle: nil)
+        self.reactor = reactor
     }
     
     required init?(coder: NSCoder) {
@@ -42,6 +46,8 @@ final class DetailViewController:
     
     private func attribute() {
         view.backgroundColor = .white
+        
+        wordLabel.font = .boldSystemFont(ofSize: 24)
     }
     
     private func layout() {
@@ -49,7 +55,7 @@ final class DetailViewController:
         view.addSubview(tableView)
         
         wordLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
         tableView.snp.makeConstraints { make in
             make.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)

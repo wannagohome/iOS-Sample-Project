@@ -15,9 +15,14 @@ public protocol DetailDependency: Dependency {
 }
 
 public protocol DetailBuilder {
-    var model: Word? { get set }
+    var model: Word! { get set }
+    var viewController: DetailViewControllerType { get }
 }
 
 public final class DetailComponent: Component<DetailDependency>, DetailBuilder {
-    public var model: Word?
+    public var model: Word!
+    
+    public var viewController: DetailViewControllerType {
+        DetailViewController(DetailReactor(model))
+    }
 }
