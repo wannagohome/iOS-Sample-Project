@@ -11,9 +11,10 @@ import Coordinator
 import UIKit
 
 import SearchUserInterface
+import SearchDomain
 
 public protocol SearchCoordinatorDelegate: AnyObject {
-    func selectWord()
+    func selectWord(_ word: Word)
 }
 
 public final class SearchCoordinator: Coordinator {
@@ -33,14 +34,13 @@ public final class SearchCoordinator: Coordinator {
     }
     
     public func start() {
-        let viewController = component.uiComponent.searchViewController
-        viewController.delegate = self
+        let viewController = component.uiComponent.searchViewController(self)
         navigationController.viewControllers = [viewController]
     }
 }
 
-extension SearchCoordinator: SearchViewControllerDelegate {
-    public func tapTitle() {
-        delegate?.selectWord()
+extension SearchCoordinator: SearchReactorDelegate {
+    public func selectWord(_ word: Word) {
+        delegate?.selectWord(word)
     }
 }

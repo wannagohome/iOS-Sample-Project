@@ -11,10 +11,15 @@ import NeedleFoundation
 
 import Search
 import UIKit
+import Detail
 
 final class RootComponent: BootstrapComponent {
     
     var searchComponent: SearchBuilder {
         shared { SearchComponent(parent: self) }
+    }
+    
+    var detailComponent: DetailBuilder {
+        shared { DetailComponent(parent: self) }
     }
 }

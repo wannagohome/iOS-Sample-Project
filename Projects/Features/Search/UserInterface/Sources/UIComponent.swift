@@ -17,11 +17,13 @@ public protocol UIDependency: Dependency {
 }
 
 public protocol UIBuilder {
-    var searchViewController: SearhViewControllerType { get }
+    func searchViewController(_ delegate: SearchReactorDelegate) -> SearhViewControllerType
 }
 
 public final class UIComponent: Component<UIDependency>, UIBuilder {
-    public var searchViewController: SearhViewControllerType {
-        SearchViewController(reactor: SearchReactor(repository: dependency.dataComponent.repository))
+    public func searchViewController(_ delegate: SearchReactorDelegate) -> SearhViewControllerType {
+        let reactor = SearchReactor(repository: dependency.dataComponent.repository)
+        reactor.delegate = delegate
+        return SearchViewController(reactor: reactor)
     }
 }

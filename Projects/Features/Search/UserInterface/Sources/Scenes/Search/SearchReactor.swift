@@ -12,9 +12,14 @@ import ReactorKit
 import SearchDataRepository
 import SearchDomain
 
+public protocol SearchReactorDelegate: AnyObject {
+    func selectWord(_ word: Word)
+}
+
 final class SearchReactor: Reactor {
     
     private var repository: SearchRepositoryType
+    public weak var delegate: SearchReactorDelegate?
     public var initialState: State
     
     init(repository: SearchRepositoryType) {
@@ -43,7 +48,8 @@ final class SearchReactor: Reactor {
                 .map { $0.map { $0.asModel() } }
                 .map(Mutation.setWords)
             
-        case .selectWord:
+        case .selectWord(let row):
+            delegate?.selectWord(currentState.words[row])
             return .empty()
         }
     }

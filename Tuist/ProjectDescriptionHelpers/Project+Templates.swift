@@ -37,6 +37,9 @@ public extension Project {
     
     static func framework(name: String,
                           platform: Platform = .iOS,
+                          sources: ProjectDescription.SourceFilesList? = ["Sources/**"],
+                          resources: ProjectDescription.ResourceFileElements? = ["Resources/**"],
+                          tests: ProjectDescription.SourceFilesList? = ["Tests/**"],
                           packages: [Package] = [],
                           dependencies: [TargetDependency] = [],
                           infoPlist: [String: InfoPlist.Value] = [:],
@@ -45,6 +48,9 @@ public extension Project {
                        packages: packages,
                        product: .framework,
                        platform: platform,
+                       sources: sources,
+                       resources: resources,
+                       tests: tests, 
                        dependencies: dependencies,
                        infoPlist: infoPlist,
                        hasDemoApp: hasDemoApp)

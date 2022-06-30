@@ -10,6 +10,8 @@ import Coordinator
 import UIKit
 
 import Search
+import SearchDomain
+import Detail
 
 final class AppCoordinator: Coordinator {
     
@@ -33,11 +35,17 @@ final class AppCoordinator: Coordinator {
         childCoordinators.append(coordinator)
     }
     
-    private func presentDetailViewController() {
-//        let coordinator = DayListCoordinator(navigationController: navigationController)
-//        coordinator.delegate = self
-//        coordinator.start()
-//        childCoordinators.append(coordinator)
+    private func presentDetailViewController(of word: Word) {
+        var component = component.detailComponent
+        component.model = word
+        
+        let coordinator = DetailCoordinator(
+            navigationController: navigationController,
+            component: component
+        )
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
     }
     
     private func dismissDetailViewController() {
@@ -46,7 +54,9 @@ final class AppCoordinator: Coordinator {
 }
 
 extension AppCoordinator: SearchCoordinatorDelegate {
-    func selectWord() {
-        presentDetailViewController()
+    func selectWord(_ word: Word) {
+        presentDetailViewController(of: word)
     }
 }
+
+extension AppCoordinator: DetailCoordinatorDelegate {}

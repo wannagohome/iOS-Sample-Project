@@ -16,6 +16,7 @@ let project = Project.app(
     dependencies: [
         Dep.Project.Module.Coordinator,
         Dep.Project.Feature.Search.HoleFeature,
+        Dep.Project.Feature.Detail.HoleFeature,
     ],
     infoPlist: [
         "CFBundleShortVersionString": .string("1.0.0"),

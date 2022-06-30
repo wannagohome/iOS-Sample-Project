@@ -12,13 +12,7 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-public protocol SearchViewControllerDelegate: AnyObject {
-    func tapTitle()
-}
-
-public protocol SearhViewControllerType: UIViewController {
-    var delegate: SearchViewControllerDelegate? { get set }
-}
+public protocol SearhViewControllerType: UIViewController {}
 
 final class SearchViewController:
     UIViewController,
@@ -27,7 +21,6 @@ final class SearchViewController:
     
     // MARK: - Properties
     public var disposeBag: DisposeBag = DisposeBag()
-    public weak var delegate: SearchViewControllerDelegate?
     
     // MARK: - Views
     private let searchBar = UISearchBar()
