@@ -4,6 +4,7 @@ import UtilityPlugin
 
 let project = Project
     .staticFramework(name: "SearchUserInterface",
+                     tests: nil,
                      packages: [],
                      dependencies: [    
                         Dep.Project.Module.Core,

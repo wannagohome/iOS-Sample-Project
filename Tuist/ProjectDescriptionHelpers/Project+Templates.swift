@@ -23,6 +23,9 @@ public extension Project {
     
     static func staticFramework(name: String,
                                 platform: Platform = .iOS,
+                                sources: ProjectDescription.SourceFilesList? = ["Sources/**"],
+                                resources: ProjectDescription.ResourceFileElements? = ["Resources/**"],
+                                tests: ProjectDescription.SourceFilesList? = ["Tests/**"],
                                 packages: [Package] = [],
                                 dependencies: [TargetDependency] = [],
                                 hasDemoApp: Bool = false) -> Self {
@@ -30,8 +33,10 @@ public extension Project {
                        packages: packages,
                        product: .staticFramework,
                        platform: platform,
+                       sources: sources,
+                       resources: nil,
+                       tests: tests,
                        dependencies: dependencies,
-                       hasResources: false,
                        hasDemoApp: hasDemoApp)
     }
     
@@ -90,7 +95,6 @@ public extension Project {
                         deploymentTarget: DeploymentTarget? = .iOS(targetVersion: "13.0", devices: .iphone),
                         dependencies: [TargetDependency] = [],
                         infoPlist: [String: InfoPlist.Value] = [:],
-                        hasResources: Bool = true,
                         hasDemoApp: Bool = false) -> Project {
         
         let organizationName = "org.wannagohome"
@@ -106,7 +110,7 @@ public extension Project {
                              deploymentTarget: deploymentTarget,
                              infoPlist: .extendingDefault(with: infoPlist),
                              sources: sources,
-                             resources: hasResources ? resources : nil,
+                             resources: resources,
                              scripts: scripts,
                              dependencies: dependencies,
                              settings: .settings(base: settings, defaultSettings: .recommended))
@@ -120,7 +124,7 @@ public extension Project {
                                      "UILaunchStoryboardName": "LaunchScreen"
                                    ]),
                                    sources: ["DemoAppSources/**"],
-                                   resources: hasResources ? resources : nil,
+                                   resources: resources,
                                    scripts: [.pre(script: """
                                                   export PATH="$PATH:/opt/homebrew/bin"
                                                   
@@ -145,9 +149,12 @@ public extension Project {
                                 dependencies: testTargetDependencies,
                                 settings: .settings(base: settings, defaultSettings: .recommended))
 
-        let targets: [Target] = hasDemoApp
-            ? [target1, testTarget, demoAppTarget]
-            : [target1, testTarget]
+        var targets: [Target] = hasDemoApp
+            ? [target1, demoAppTarget]
+            : [target1]
+        if tests != nil {
+            targets.append(testTarget)
+        }
         
         return Project(name: name,
                        organizationName: organizationName,

@@ -4,6 +4,7 @@ import UtilityPlugin
 
 let project = Project
     .staticFramework(name: "SearchDataRepository",
+                     tests: nil,
                      packages: [],
                      dependencies: [
                         Dep.Project.Module.Rx,

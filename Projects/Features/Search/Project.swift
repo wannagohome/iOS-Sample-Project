@@ -5,6 +5,7 @@ import UtilityPlugin
 let project = Project.framework(
     name: "Search",
     platform: .iOS,
+    tests: nil,
     dependencies: [
         Dep.Project.Feature.Search.Domain,
         Dep.Project.Feature.Search.DataRepository,
