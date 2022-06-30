@@ -4,9 +4,9 @@ import UtilityPlugin
 public extension Project {
     static func staticLibrary(name: String,
                               platform: Platform = .iOS,
-                              sources: ProjectDescription.SourceFilesList = ["Sources/**"],
-                              resources: ProjectDescription.ResourceFileElements = ["Resources/**"],
-                              tests: ProjectDescription.SourceFilesList = ["Tests/**"],
+                              sources: ProjectDescription.SourceFilesList? = ["Sources/**"],
+                              resources: ProjectDescription.ResourceFileElements? = ["Resources/**"],
+                              tests: ProjectDescription.SourceFilesList? = ["Tests/**"],
                               packages: [Package] = [],
                               dependencies: [TargetDependency] = [],
                               hasDemoApp: Bool = false) -> Self {
