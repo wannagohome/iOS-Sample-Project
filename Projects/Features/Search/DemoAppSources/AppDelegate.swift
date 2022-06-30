@@ -5,6 +5,7 @@ import NeedleFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    private var coordinator: AppCoordinator!
 
     func application(
         _ application: UIApplication,
@@ -13,9 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         registerProviderFactories()
         
-        let rootComponent = RootComponent()
-        window?.rootViewController = rootComponent.daliyComponent.dayViewController
-        window?.makeKeyAndVisible()
+        self.coordinator = AppCoordinator(rootWindow: window!)
+        coordinator.start()
 
         return true
     }

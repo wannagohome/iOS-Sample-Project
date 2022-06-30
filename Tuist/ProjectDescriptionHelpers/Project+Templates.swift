@@ -121,9 +121,14 @@ public extension Project {
                                    ]),
                                    sources: ["DemoAppSources/**"],
                                    resources: hasResources ? resources : nil,
-                                   scripts: scripts,
+                                   scripts: [.pre(script: """
+                                                  export PATH="$PATH:/opt/homebrew/bin"
+                                                  
+                                                  needle generate ${PROJECT_DIR}/DemoAppSources/Generated/NeedleGenerated.swift ./
+                                                  """, name: "Needle generate")],
                                    dependencies: [
-                                    .target(name: "\(name)")
+                                    .target(name: "\(name)"),
+                                    Dep.Project.Module.Core
                                    ],
                                    settings: .settings(base: settings, defaultSettings: .recommended))
         

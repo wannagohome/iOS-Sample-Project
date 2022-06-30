@@ -6,7 +6,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var coordinator: AppCoordinator!
-//    private var rootComponenet: RootComponent!
 
     func application(
         _ application: UIApplication,
@@ -15,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         registerProviderFactories()
         
-//        self.rootComponenet = RootComponent()
         self.coordinator = AppCoordinator(rootWindow: window!)
         coordinator.start()
 
