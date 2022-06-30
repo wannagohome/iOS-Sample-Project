@@ -12,10 +12,6 @@ extension Dep {
     }
 }
 
-public extension Dep.Project.Feature {
-//    static let Features = Dep.feature(name: "Features")
-}
-
 public extension Dep.Project.Feature.Search {
     static let group = "Search"
     
@@ -33,5 +29,7 @@ public extension Dep.Project.Feature.Detail {
 }
 
 public extension Dep.Project.Module {
-    static let Coordinator = Dep.module(name: "Coordinator", path: "Coordinator")
+    static let Coordinator =    Dep.module(name: "Coordinator", path: "Coordinator")
+    static let Rx =             Dep.module(name: "Rx", path: "Rx")
+    static let Core =           Dep.module(name: "Core", path: "Core")
 }

@@ -13,17 +13,18 @@ import UIKit
 import SearchDataRepository
 
 public protocol UIDependency: Dependency {
+    var reactorDelegate: SearchReactorDelegate { get }
     var dataComponent: SearchDataBuilder { get }
 }
 
 public protocol UIBuilder {
-    func searchViewController(_ delegate: SearchReactorDelegate) -> SearhViewControllerType
+    var searchViewController: SearhViewControllerType { get }
 }
 
 public final class UIComponent: Component<UIDependency>, UIBuilder {
-    public func searchViewController(_ delegate: SearchReactorDelegate) -> SearhViewControllerType {
+    public var searchViewController: SearhViewControllerType {
         let reactor = SearchReactor(repository: dependency.dataComponent.repository)
-        reactor.delegate = delegate
+        reactor.delegate = dependency.reactorDelegate
         return SearchViewController(reactor: reactor)
     }
 }

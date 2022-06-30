@@ -34,7 +34,7 @@ public final class SearchCoordinator: Coordinator {
     }
     
     public func start() {
-        let viewController = component.uiComponent.searchViewController(self)
+        let viewController = component.uiComponent.searchViewController
         navigationController.viewControllers = [viewController]
     }
 }

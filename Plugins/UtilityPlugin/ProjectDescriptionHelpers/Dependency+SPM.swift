@@ -10,10 +10,8 @@ import ProjectDescription
 
 // MARK: - Group
 extension Dep {
-    public struct SPM {
-    }
+    public struct SPM {}
 }
-//extension Package {}
 
 
 // MARK: - Swift Package
@@ -38,12 +36,12 @@ public extension Package {
         .exact("6.5.0")
     )
     
-    static let SnapKit = Package .package(
+    static let SnapKit = Package.package(
         url: "https://github.com/SnapKit/SnapKit.git",
         .exact("5.0.1")
     )
     
-    static let ReactorKit = Package .package(
+    static let ReactorKit = Package.package(
         url: "https://github.com/ReactorKit/ReactorKit.git",
         .exact("3.0.0")
     )

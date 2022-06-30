@@ -14,7 +14,7 @@ let project = Project.app(
                    needle generate Projects/Application/Sources/Generated/NeedleGenerated.swift Projects/
                    """, name: "Needle generate")],
     dependencies: [
-        Dep.Project.Module.Coordinator,
+        Dep.Project.Module.Core,
         Dep.Project.Feature.Search.HoleFeature,
         Dep.Project.Feature.Detail.HoleFeature,
     ],

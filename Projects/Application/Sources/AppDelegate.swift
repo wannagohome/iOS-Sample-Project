@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var coordinator: AppCoordinator!
+//    private var rootComponenet: RootComponent!
 
     func application(
         _ application: UIApplication,
@@ -14,13 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         registerProviderFactories()
         
-        let navigationController = UINavigationController()
-        let coordinator = AppCoordinator(navigationController)
-        self.coordinator = coordinator
+//        self.rootComponenet = RootComponent()
+        self.coordinator = AppCoordinator(rootWindow: window!)
         coordinator.start()
-        
-        window?.rootViewController = navigationController
-        window?.makeKeyAndVisible()
 
         return true
     }

@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import ReactorKit
+import RxCocoa
 
 final class DetailViewController:
     UIViewController,
@@ -34,8 +35,9 @@ final class DetailViewController:
     
     func bind(reactor: DetailReactor) {
         reactor.state.map { $0.word.word }
-            
-            
+            .asDriver(onErrorDriveWith: .empty())
+            .drive(wordLabel.rx.text)
+            .disposed(by: disposeBag)
     }
     
     private func attribute() {

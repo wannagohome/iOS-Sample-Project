@@ -22,4 +22,8 @@ final class RootComponent: BootstrapComponent {
     var detailComponent: DetailBuilder {
         shared { DetailComponent(parent: self) }
     }
+    
+    var navigationController: UINavigationController {
+        shared { UINavigationController() }
+    }
 }

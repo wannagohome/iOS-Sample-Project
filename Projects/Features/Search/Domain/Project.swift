@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 import UtilityPlugin
 
 let project = Project
-    .staticFramework(name: "SearchDomain",
+    .framework(name: "SearchDomain",
                      dependencies: [
-                        Dep.SPM.Needle
+                        Dep.Project.Module.Core,
                      ])

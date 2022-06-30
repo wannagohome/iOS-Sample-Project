@@ -19,17 +19,18 @@ final class AppCoordinator: Coordinator {
     private let navigationController: UINavigationController
     private let component: RootComponent
     
-    init(_ navigationController: UINavigationController) {
-        let component = RootComponent()
+    init(
+        _ component: RootComponent = RootComponent(),
+        rootWindow: UIWindow
+    ) {
         self.component = component
-        self.navigationController = navigationController
+        self.navigationController = component.navigationController
+        rootWindow.rootViewController = component.navigationController
+        rootWindow.makeKeyAndVisible()
     }
     
     func start() {
-        let coordinator = SearchCoordinator(
-            navigationController: navigationController,
-            component: component.searchComponent
-        )
+        let coordinator = component.searchComponent.searchCoordinator
         coordinator.delegate = self
         coordinator.start()
         childCoordinators.append(coordinator)
